@@ -24,6 +24,7 @@ open class BaseFragment : Fragment() {
     }
     private fun changeFragment(){
         changeFragment()
+        //Распарсить фрагмент
 
     }
 }
