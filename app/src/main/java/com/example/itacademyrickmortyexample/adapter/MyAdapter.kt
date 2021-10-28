@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyAdapter(//read about this
-    private val onClick: (id: Int) -> Unit
+    private val onClick: (Result) -> Unit
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     private val data = mutableListOf<Result>()
 
@@ -41,7 +41,7 @@ class MyAdapter(//read about this
         fun bind(item: Result) {
             Picasso.get().load(item.image).into(icon)
             name.text = item.name
-            itemView.setOnClickListener { (onClick.invoke(item.id)) }
+            itemView.setOnClickListener { (onClick.invoke(item)) }
         }
     }
 }
