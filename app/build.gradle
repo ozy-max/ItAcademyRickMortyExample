@@ -5,6 +5,9 @@ plugins {
 
 android {
     compileSdk 31
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.itacademyrickmortyexample"
@@ -49,6 +52,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //OkHttp
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

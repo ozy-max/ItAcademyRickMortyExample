@@ -1,5 +1,6 @@
 package com.example.itacademyrickmortyexample.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 class MyAdapter(//read about this
-    private val onClick: (id: Int) -> Unit
+    private val onClick: (Result) -> Unit
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     private val data = mutableListOf<Result>()
 
@@ -28,6 +29,7 @@ class MyAdapter(//read about this
 
     override fun getItemCount() = data.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(list: List<Result>) {
         data.clear()
         data.addAll(list)
@@ -36,12 +38,18 @@ class MyAdapter(//read about this
 
     inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val icon: CircleImageView = item.findViewById(R.id.circleImageView)
-        private val name: TextView = item.findViewById(R.id.nameTextView)
+        private val nameTextView: TextView = item.findViewById(R.id.nameTextView)
+        private val idTextView: TextView = item.findViewById(R.id.idTextView)
+        private val statusTextView: TextView = item.findViewById(R.id.statusTextView)
+        private val genderTextView: TextView = item.findViewById(R.id.genderTextView)
 
         fun bind(item: Result) {
             Picasso.get().load(item.image).into(icon)
-            name.text = item.name
-            itemView.setOnClickListener { (onClick.invoke(item.id)) }
+            nameTextView.text = item.name
+            idTextView.text = item.id.toString()
+            statusTextView.text = item.status.toString()
+            genderTextView.text = item.gender.toString()
+            itemView.setOnClickListener { (onClick.invoke(item)) }
         }
     }
 }
