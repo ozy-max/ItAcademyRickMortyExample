@@ -38,18 +38,18 @@ class MyAdapter(//read about this
 
     inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val icon: CircleImageView = item.findViewById(R.id.circleImageView)
-        private val nameTextView: TextView = item.findViewById(R.id.nameTextView)
+        private val name1TextView: TextView = item.findViewById(R.id.name1TextView)
         private val idTextView: TextView = item.findViewById(R.id.idTextView)
-        private val statusTextView: TextView = item.findViewById(R.id.statusTextView)
-        private val genderTextView: TextView = item.findViewById(R.id.genderTextView)
+
+
+
 
         fun bind(item: Result) {
             Picasso.get().load(item.image).into(icon)
-            nameTextView.text = item.name
+            name1TextView.text = item.name
             idTextView.text = item.id.toString()
-            statusTextView.text = item.status.toString()
-            genderTextView.text = item.gender.toString()
             itemView.setOnClickListener { (onClick.invoke(item)) }
+
         }
     }
 }

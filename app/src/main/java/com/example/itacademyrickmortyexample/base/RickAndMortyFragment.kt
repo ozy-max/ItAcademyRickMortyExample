@@ -1,11 +1,14 @@
 package com.example.itacademyrickmortyexample.base
 
 import android.os.Bundle
+import android.provider.SyncStateContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itacademyrickmortyexample.R
@@ -40,11 +43,10 @@ class RickAndMortyFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         service = Common.retrofitService
-        adapter = MyAdapter(onClick = { changeFragment(InfoFragment(), R.id.frame_layout) })
+        adapter = MyAdapter(onClick = {startInfoFragment(it)})
         binding.recViewHero.layoutManager = LinearLayoutManager(context)
         binding.recViewHero.adapter = adapter
         getAllHeroes()
-//        arguments = Bundle().apply { putParcelable("dataKey", Result) }
     }
 
 
@@ -67,5 +69,13 @@ class RickAndMortyFragment : BaseFragment() {
                 ).show()
             }
         })
+    }
+    private fun startInfoFragment(hero: Result){
+        Log.e("###","FirstPoint")
+        val data = Bundle()
+        data.putParcelable("heroes", hero)
+        val heroInfo = InfoFragment()
+        heroInfo.arguments = data
+        changeFragment(heroInfo, R.id.frame_layout)
     }
 }
